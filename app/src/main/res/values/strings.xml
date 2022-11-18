@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">NewsProject</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="news_api">News App!</string>
+    <string name="categories">Categories</string>
+    <string name="settings">Settings</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pic_your_category">pic your category of interest</string>
+    <string name="Politics">Politics</string>
+    <string name="Sports">Sports</string>
+    <string name="Business">Business </string>
+    <string name="Health">Health</string>
+    <string name="Science">Science</string>
+    <string name="Enviroment">Enviroment</string>
+
+</resources>
