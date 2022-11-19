@@ -17,11 +17,16 @@
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/drawable/toolbar_background.xml" value="0.1" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/activity_home.xml" value="0.2" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.13" />
+        <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/activity_splash_screen2.xml" value="0.13802083333333334" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/app_bar_home.xml" value="0.14" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/content_home.xml" value="0.15" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/content_home2.xml" value="0.13125" />
+        <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/content_splash_scteen.xml" value="0.20416666666666666" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/fragment_categories.xml" value="0.20416666666666666" />
+        <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/fragment_first2.xml" value="0.20416666666666666" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/fragment_news.xml" value="0.1" />
+        <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/fragment_second2.xml" value="0.20416666666666666" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/item_category.xml" value="0.25" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/item_news.xml" value="0.1" />
         <entry key="..\:/javaa.cod/NewsProject/app/src/main/res/layout/layout.xml" value="0.20416666666666666" />

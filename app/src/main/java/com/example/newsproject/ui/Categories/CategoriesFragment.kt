@@ -18,9 +18,10 @@ class CategoriesFragment : Fragment() {
 
 
      val categorieslist = listOf(
-    Category("sports",R.string.Sports, R.drawable.sport_icon,R.color.read),
-    Category("general",R.string.Politics,R.drawable.politics_icon,R.color.blue), Category(" health",R.string.Health,R.drawable.health_icon,R.color.color_health),
-    Category(" business",R.string.Business,R.drawable.business_icon,R.color.color_business),
+    Category("sports",R.string.Sports, R.drawable.sports_icon,R.color.read),
+    Category("general",R.string.Politics,R.drawable.politics_icon,R.color.blue),
+    Category("health",R.string.Health,R.drawable.health_icon,R.color.color_health),
+    Category("business",R.string.Business,R.drawable.business_icon,R.color.color_business),
     Category("science",R.string.Science,R.drawable.sicence_icon,R.color.color_scince),
     Category("technology",R.string.Enviroment,R.drawable.enviroment_icon,R.color.color_enviroment))
     var adapter = CategoryAdapter(categorieslist)

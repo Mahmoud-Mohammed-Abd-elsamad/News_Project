@@ -36,7 +36,7 @@ class CategoryAdapter(val list: List<Category>) :
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         var category = list.get(position)
 
-        holder.title_id.setText("cggbzcfbz")
+        holder.title_id.setText(category.id)
         holder.image_id.setImageResource(category.imageId)
         holder.card_view.setCardBackgroundColor(
             ContextCompat.getColor(

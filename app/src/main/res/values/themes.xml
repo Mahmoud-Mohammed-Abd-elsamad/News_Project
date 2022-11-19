@@ -24,7 +24,6 @@
     <style name="Theme.NewsProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
     <style name="back_ground_lieft_cardview" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/lieft_cardview.MaterialCardView.Cut</item>
     </style>
@@ -37,7 +36,6 @@
         <item name="cornerSizeBottomRight">18dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
-
 
 
     <style name="back_ground_right_cardview" parent="@style/Widget.MaterialComponents.CardView">

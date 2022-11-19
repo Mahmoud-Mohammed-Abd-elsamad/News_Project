@@ -24,7 +24,7 @@ class NewsAdapter(var items:List<ArticlesItem>?): RecyclerView.Adapter<NewsAdapt
         holder.auther.text = item?.author
         holder.title.text = item?.title
         holder.date.text = item?.publishedAt
-        Glide.with(holder.itemView).load(item?.url).into(holder.image)
+        Glide.with(holder.itemView).load(item?.urlToImage).into(holder.image)
     }
 
     override fun getItemCount(): Int {
