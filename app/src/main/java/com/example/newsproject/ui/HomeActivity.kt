@@ -7,10 +7,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.newsproject.R
-import com.example.newsproject.model.Category
+import com.example.newsproject.ui.Categories.Category
 import com.example.newsproject.ui.Categories.CategoriesFragment
 import com.example.newsproject.ui.News.NewsFragment
-import java.util.*
 
 class HomeActivity : AppCompatActivity() {
 

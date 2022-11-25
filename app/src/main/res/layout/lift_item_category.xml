@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/ctegory_card_view"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/back_ground_lieft_cardview"
+    style="@style/back_ground_lift_cardview"
     tools:cardBackgroundColor="@color/blue"
     android:layout_margin="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">

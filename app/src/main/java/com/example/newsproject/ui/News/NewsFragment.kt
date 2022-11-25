@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsproject.Api.ApiManager
 import com.example.newsproject.Api.Cnstants
 import com.example.newsproject.R
-import com.example.newsproject.model.Category
+import com.example.newsproject.ui.Categories.Category
 import com.example.newsproject.model.NewsResponse
 import com.example.newsproject.model.SourcesItem
 import com.example.newsproject.model.SourcesResponse

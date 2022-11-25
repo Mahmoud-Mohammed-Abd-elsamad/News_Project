@@ -1,4 +1,4 @@
-package com.example.newsproject.model
+package com.example.newsproject.ui.Categories
 
 data class Category(
 

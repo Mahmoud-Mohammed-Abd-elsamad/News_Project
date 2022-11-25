@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsproject.R
-import com.example.newsproject.model.Category
 import com.google.android.material.card.MaterialCardView
 
 class CategoryAdapter(val list: List<Category>) :
@@ -19,8 +17,8 @@ class CategoryAdapter(val list: List<Category>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         var view: View = LayoutInflater.from(parent.context).inflate(
-            if (viewType == LIFT_ITEM_VIEW) R.layout.rght_item_category
-            else R.layout.left_item_category, parent, false
+            if (viewType == LIFT_ITEM_VIEW) R.layout.right_item_category
+            else R.layout.lift_item_category, parent, false
         )
 
         return CategoryViewHolder(view)
@@ -65,7 +63,7 @@ class CategoryAdapter(val list: List<Category>) :
     var onClicLisnerInterface: OnClicLisnerInterface? = null
 
     interface OnClicLisnerInterface {
-         fun onItemclic(position: Int,category:Category)
+         fun onItemclic(position: Int,category: Category)
     }
 
     class CategoryViewHolder(iteview: View) : RecyclerView.ViewHolder(iteview) {

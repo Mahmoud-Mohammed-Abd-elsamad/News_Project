@@ -24,12 +24,12 @@
     <style name="Theme.NewsProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="back_ground_lieft_cardview" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/lieft_cardview.MaterialCardView.Cut</item>
+    <style name="back_ground_lift_cardview" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/lift_cardview.MaterialCardView.Cut</item>
     </style>
 
 
-    <style name="lieft_cardview.MaterialCardView.Cut" parent="">
+    <style name="lift_cardview.MaterialCardView.Cut" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSizeTopRight">18dp</item>
         <item name="cornerSizeTopLeft">18dp</item>
