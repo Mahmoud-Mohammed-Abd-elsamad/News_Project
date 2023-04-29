@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsproject.R
+import com.example.newsproject.databinding.FragmentNewsBinding
+import com.example.newsproject.databinding.ItemNewsBinding
 import com.example.newsproject.model.ArticlesItem
 
 class NewsAdapter(var items:List<ArticlesItem>?): RecyclerView.Adapter<NewsAdapter.viewHolder>(){
@@ -15,16 +18,14 @@ class NewsAdapter(var items:List<ArticlesItem>?): RecyclerView.Adapter<NewsAdapt
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
-        var view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_news,parent,false)
-        return viewHolder(view)
+        val binding:ItemNewsBinding = DataBindingUtil
+            .inflate(LayoutInflater.from(parent.context),R.layout.item_news,parent,false)
+        return viewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         var item = items?.get(position)
-        holder.auther.text = item?.author
-        holder.title.text = item?.title
-        holder.date.text = item?.publishedAt
-        Glide.with(holder.itemView).load(item?.urlToImage).into(holder.image)
+        holder.bind(item!!)
     }
 
     override fun getItemCount(): Int {
@@ -37,12 +38,12 @@ class NewsAdapter(var items:List<ArticlesItem>?): RecyclerView.Adapter<NewsAdapt
 
     }
 
-    class viewHolder(var itemview: View): RecyclerView.ViewHolder(itemview){
-        var image = itemview.findViewById<ImageView>(R.id.image)
-        var title = itemview.findViewById<TextView>(R.id.title)
-        var auther = itemview.findViewById<TextView>(R.id.auther)
-        var date = itemview.findViewById<TextView>(R.id.date)
-       // var item_progressBar = itemview.findViewById<ProgressBar>(R.id.item_prgressBar)
+    class viewHolder(var itemBinding:ItemNewsBinding): RecyclerView.ViewHolder(itemBinding.root){
+        fun bind(item:ArticlesItem){
+            itemBinding.item = item
+            itemBinding.invalidateAll()
+        }
+
 
     }
 }

@@ -7,10 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsproject.Api.ApiManager
 import com.example.newsproject.Api.Cnstants
 import com.example.newsproject.R
+import com.example.newsproject.databinding.FragmentNewsBinding
 import com.example.newsproject.ui.Categories.Category
 import com.example.newsproject.model.NewsResponse
 import com.example.newsproject.model.SourcesItem
@@ -30,12 +36,14 @@ class NewsFragment : Fragment() {
             return fragment
         }
     }
+    lateinit var viewModel: NewsVIewModel
     lateinit var category: Category
     lateinit var tapLayout:TabLayout
     lateinit var progressBar: ProgressBar
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: NewsAdapter
     lateinit var list: List<NewsAdapter>
+    lateinit var binding: FragmentNewsBinding
 
 
 
@@ -43,91 +51,76 @@ class NewsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        binding = DataBindingUtil.inflate(inflater,
+            R.layout.fragment_news, container, false)
+
+        return binding.root
+
+
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        tapLayout = view.findViewById(R.id.tabLayout)
+//        progressBar =view. findViewById(R.id.progress_bar)
 
-        tapLayout = view.findViewById(R.id.tabLayout)
-        progressBar =view. findViewById(R.id.progress_bar)
-        adapter =  NewsAdapter(null)
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter
+//        recyclerView = view.findViewById(R.id.recyclerView)
 
-        getApiSources()
-        tapLayout.getTabAt(0)?.select()
-        tapLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+             adapter =  NewsAdapter(null)
+        binding.recyclerView.adapter = adapter
+
+        viewModel = ViewModelProvider(this).get(NewsVIewModel::class.java)
+        subScribeToliveData()
+
+        viewModel.getApiSources(category)
+
+        binding.tabLayout.getTabAt(0)?.select()
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 var source = tab?.tag as SourcesItem   //<<<<<<<<<<<<<<
-                getNewsBySources(source )
+                viewModel.getNewsBySources(source)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
                 var source = tab?.tag as SourcesItem   //<<<<<<<<<<<<<<
-                getNewsBySources(source )
+                viewModel.getNewsBySources(source)
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 var sources = tab?.tag
-                getNewsBySources(sources as SourcesItem)
+                viewModel.getNewsBySources(sources as SourcesItem)
             }
 
         })
     }
 
-    private fun getApiSources() {
-        progressBar.isVisible = true
-        ApiManager.getApies().getServices(Cnstants.Apikey,category.id)
-            .enqueue(object: Callback<SourcesResponse> {
-                override fun onResponse(
-                    call: Call<SourcesResponse>,
-                    response: Response<SourcesResponse>
-                ) {
-                    progressBar.isVisible = false
-                    addSourcesToTablayout(response.body()?.sources)
+    private fun subScribeToliveData() {
+        viewModel.progressBarVisible.observe(viewLifecycleOwner, Observer { it->
+       binding.progressBar.isVisible = it
+        })
 
-                }
+        viewModel.sourcessLiveData.observe(viewLifecycleOwner, Observer { Data->
+            addSourcesToTablayout(Data)
+        })
+        viewModel.articlesLiveData.observe(viewLifecycleOwner, Observer { Data->
+            adapter.DataChanged(Data)
 
-                override fun onFailure(call: Call<SourcesResponse>, t: Throwable) {
-                    progressBar.isVisible = false
-
-                }
-
-            })
+        })
     }
+
 
     private fun addSourcesToTablayout(sources: List<SourcesItem?>?){
 
         sources?.forEach {
-            var tab = tapLayout.newTab()
+            var tab = binding.tabLayout.newTab()
             tab.text=(it?.name)
             tab.tag = it                     //<<<<<<<<<<<<<<<<
-            tapLayout.addTab(tab)
+            binding.tabLayout.addTab(tab)
         }
     }
 
-    private fun getNewsBySources(sources: SourcesItem) {
-        progressBar.isVisible = true
-        ApiManager.getApies().getNews(Cnstants.Apikey, sources.id!!)
-            .enqueue(object : Callback<NewsResponse> {
-                override fun onResponse(
-                    call: Call<NewsResponse>,
-                    response: Response<NewsResponse>
-                ) {
-                    progressBar.isVisible = false
-                    adapter.DataChanged(response.body()?.articles)
-                }
-
-                override fun onFailure(call: Call<NewsResponse>, t: Throwable) {
-                    progressBar.isVisible = false
-                }
-
-            })
-    }
 
 
 }
