@@ -8,23 +8,14 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsproject.Api.ApiManager
-import com.example.newsproject.Api.Cnstants
 import com.example.newsproject.R
 import com.example.newsproject.databinding.FragmentNewsBinding
 import com.example.newsproject.ui.Categories.Category
-import com.example.newsproject.model.NewsResponse
 import com.example.newsproject.model.SourcesItem
-import com.example.newsproject.model.SourcesResponse
 import com.google.android.material.tabs.TabLayout
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
 
 
 class NewsFragment : Fragment() {
@@ -36,7 +27,7 @@ class NewsFragment : Fragment() {
             return fragment
         }
     }
-    lateinit var viewModel: NewsVIewModel
+    lateinit var viewModel: NewsViewModel
     lateinit var category: Category
     lateinit var tapLayout:TabLayout
     lateinit var progressBar: ProgressBar
@@ -63,18 +54,21 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        tapLayout = view.findViewById(R.id.tabLayout)
-//        progressBar =view. findViewById(R.id.progress_bar)
 
-//        recyclerView = view.findViewById(R.id.recyclerView)
 
              adapter =  NewsAdapter(null)
         binding.recyclerView.adapter = adapter
 
-        viewModel = ViewModelProvider(this).get(NewsVIewModel::class.java)
+        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         subScribeToliveData()
 
-        viewModel.getApiSources(category)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                 viewModel.getApiSources(category)
+
+            }
+        }
 
         binding.tabLayout.getTabAt(0)?.select()
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{

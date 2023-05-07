@@ -35,8 +35,8 @@ class ApiManager {
 
             return retrofit!!
         }
-        fun getApies():WebSevices{
-            return getInstanse().create(WebSevices::class.java)
+        fun getApies():WebServices{
+            return getInstanse().create(WebServices::class.java)
         }
 
     }
