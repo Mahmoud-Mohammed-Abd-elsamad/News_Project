@@ -7,14 +7,15 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.newsproject.Api.Constants
+import com.example.newsproject.database.CachNewsDataBase
 import com.example.newsproject.database.MyDataBase
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         MyDataBase.init(this)
+       CachNewsDataBase.init(this)
 
         val networkHandler = object : NetworkHandler {
             @RequiresApi(Build.VERSION_CODES.M)

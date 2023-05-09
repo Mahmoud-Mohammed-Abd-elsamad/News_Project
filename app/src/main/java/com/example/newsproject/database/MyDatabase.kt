@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.newsproject.model.ArticlesItem
 import com.example.newsproject.model.SourcesItem
 
 
@@ -17,6 +18,7 @@ abstract  class MyDataBase: RoomDatabase(){
     companion object {
 
         var myDataBase: MyDataBase? = null
+        val DATABASENAME = "atabase-name"
 
 
         fun init(context:Context) {
@@ -24,7 +26,7 @@ abstract  class MyDataBase: RoomDatabase(){
             if (myDataBase == null) {
                 myDataBase = Room.databaseBuilder(
                     context,
-                    MyDataBase::class.java, "database-name"
+                    MyDataBase::class.java, DATABASENAME
                 ).fallbackToDestructiveMigration()
                     //.allowMainThreadQueries()
                     .build()

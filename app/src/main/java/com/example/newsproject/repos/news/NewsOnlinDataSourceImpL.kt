@@ -8,9 +8,7 @@ class NewsOnlinDataSourceImpL(val webServices: WebServices): NewsOnlinDataSource
 
     override suspend fun getNews(sourceId: String?): List<ArticlesItem?>? {
 try {
-
-
-        val result = webServices.getNews(Constants.Apikey, sourceId!!)
+    val result = webServices.getNews(Constants.Apikey, sourceId!!)
         return result.articles
     }catch (ex:Exception){
         throw ex

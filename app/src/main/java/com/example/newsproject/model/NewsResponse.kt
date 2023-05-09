@@ -1,6 +1,10 @@
 package com.example.newsproject.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+
 
 data class NewsResponse(
 
@@ -14,6 +18,7 @@ data class NewsResponse(
 	val status: String? = null
 )
 
+
 data class ArticlesItem(
 
 	@field:SerializedName("publishedAt")
@@ -23,7 +28,7 @@ data class ArticlesItem(
 	val author: String? = null,
 
 	@field:SerializedName("urlToImage")
-	val urlToImage: String? = null,
+	val urlToImage: String? = null,//>>>
 
 	@field:SerializedName("description")
 	val description: String? = null,
@@ -32,7 +37,7 @@ data class ArticlesItem(
 	val source: Source? = null,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	val title: String,
 
 	@field:SerializedName("url")
 	val url: String? = null,

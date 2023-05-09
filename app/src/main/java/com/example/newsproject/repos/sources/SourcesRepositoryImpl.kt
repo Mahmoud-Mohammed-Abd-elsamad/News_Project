@@ -11,16 +11,20 @@ class SourcesRepositoryImpl(val sourcesOnlinDataSource: SourcesOnlinDataSource,
         try {
             if (networkHandler.isOnlion()) {
                    val result = sourcesOnlinDataSource.getSources(category)
-                Log.e("internetonline",""+networkHandler.isOnlion())
+                Log.e("internetonline","on"+networkHandler.isOnlion())
                     sourcesOfflinDataSource.ubdateSources(result)
                  return result
-            }
-            val result = sourcesOfflinDataSource.getSourcesByCategory(category)
-            Log.e("internet of",""+networkHandler.isOnlion())
-            Log.e("sourcesOfflinDataSource",""+sourcesOfflinDataSource.getSourcesByCategory(category))
-            return result
+            }else {
+                val result = sourcesOfflinDataSource.getSourcesByCategory(category)
+                Log.e("internetof", "off" + networkHandler.isOnlion())
+                Log.e(
+                    "sourcesOfflinDataSource",
+                    "" + sourcesOfflinDataSource.getSourcesByCategory(category)
+                )
+            return result}
         }catch (ex:Exception){
-            throw ex
+            Log.e("internetof","exswp"+networkHandler.isOnlion())
+            return sourcesOfflinDataSource.getSourcesByCategory(category)
         }
     }
 }

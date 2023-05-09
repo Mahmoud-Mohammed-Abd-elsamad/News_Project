@@ -6,13 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsproject.Api.ApiManager
 import com.example.newsproject.Api.Constants
 import com.example.newsproject.NetworkHandler
+import com.example.newsproject.database.CachNewsDataBase
 import com.example.newsproject.database.MyDataBase
 import com.example.newsproject.model.ArticlesItem
 import com.example.newsproject.model.SourcesItem
-import com.example.newsproject.repos.news.NewsOnlinDataSource
-import com.example.newsproject.repos.news.NewsOnlinDataSourceImpL
-import com.example.newsproject.repos.news.NewsRepository
-import com.example.newsproject.repos.news.NewsRepositoryImpl
+import com.example.newsproject.repos.news.*
 import com.example.newsproject.repos.sources.*
 import com.example.newsproject.ui.Categories.Category
 import kotlinx.coroutines.launch
@@ -27,11 +25,14 @@ class NewsViewModel:ViewModel() {
       lateinit var sourcesRepository: SourcesRepository
       lateinit var sourcesOnlinDataSource: SourcesOnlinDataSource
       lateinit var  sourcesOfflinDataSource: SourcesOfflinDataSource
+      lateinit var newsOfflineDataSource: NewsOfflineDataSource
       lateinit var networkHandler: NetworkHandler
 
 init {
+
     newsOnlinDataSource = NewsOnlinDataSourceImpL(ApiManager.getApies())
-    newsRepository = NewsRepositoryImpl(newsOnlinDataSource)
+    newsOfflineDataSource = NewsOfflineDataSourceImpl(CachNewsDataBase.getInstanse())
+    newsRepository = NewsRepositoryImpl(newsOnlinDataSource,newsOfflineDataSource,networkHandler)
 
     sourcesOnlinDataSource = SourcesOnlinDataSourceImpl(ApiManager.getApies())
     sourcesOfflinDataSource = SourcesOfflinDataSourceImpl(MyDataBase.getInstanse())
